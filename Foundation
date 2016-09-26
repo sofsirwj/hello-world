@@ -1,0 +1,5 @@
+make Foundation Magellan work well with dynamic content
+new Foundation.Magellan($('#magellan'));
+$('#magellan').foundation('reflow');
+Foundation.IHearYou();
+https://github.com/zurb/foundation-sites/issues/8016#issuecomment-249517990
