@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import * as globalActions from '../../modules/global/actions';
 import AmountInput from '../AmountInput/AmountInput';
 import './OrderForm.css';
 
@@ -10,6 +13,11 @@ class OrderForm extends Component {
             price: 5.56,
             amount: '' // for showing placeholder when it's zero
         };
+    }
+
+    componentDidMount(){
+        this.props.getStocks();
+        this.props.getAccount(this.props.accountId);
     }
 
     changeEntrustType(type){
@@ -66,4 +74,16 @@ class OrderForm extends Component {
     }
 }
 
-export default OrderForm;
+function mapStateToProps(state){
+    return {
+        accountId: state.login.accountId,
+        stocks: state.global.stocks,
+        account: state.global.account
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(Object.assign({}, globalActions), dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderForm);
