@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
+import { ConnectedRouter } from 'connected-react-router';
 import Home from './pages/home/containers/Home';
 import Buy from './pages/buy/containers/Buy';
 import Sell from './pages/sell/components/Sell';
@@ -11,7 +12,7 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <Router basename="/stock">
+      <ConnectedRouter history={this.props.history}>
         <div className="App">
           <img className="App-logo" src={logo} alt="logo" />
           <nav>
@@ -28,7 +29,7 @@ class App extends Component {
             <Route path="/login" component={Login} />
           </div>
         </div>
-      </Router>
+      </ConnectedRouter>
     );
   }
 }
