@@ -5,7 +5,6 @@ import Home from '../components/Home';
 
 function mapStateToProps(state){
     return {
-        stocks: state.global.stocks,
         account: state.global.account,
         orders: state.global.orders
     };

@@ -14,31 +14,35 @@ class OrderTable extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            <span className="type">买</span>
-                            <p>
-                                中国石油
-                                <br />
-                                2018-12-20
-                            </p>
-                        </td>
-                        <td>
-                            5.59
-                            <br />
-                            --
-                        </td>
-                        <td>
-                            200
-                            <br />
-                            200
-                        </td>
-                        <td>
-                            已报/已成交
-                            <br />
-                            13:00:04
-                        </td>
-                    </tr>
+                    {this.props.orders.map(order => {
+                        return (
+                            <tr key={order.id}>
+                                <td>
+                                    <span className="type">{this.props.type === 'sell' ? '卖' : '买'}</span>
+                                    <p>
+                                        {order.stock_name}
+                                        <br />
+                                        {order.ctime}
+                                    </p>
+                                </td>
+                                <td>
+                                    {order.entrust_limit}
+                                    <br />
+                                    --
+                                </td>
+                                <td>
+                                    {order.entrust_amount}
+                                    <br />
+                                    {order.status === 'done' ? order.entrust_amount : '--'}
+                                </td>
+                                <td>
+                                    已报/已成交
+                                    <br />
+                                    {order.utime}
+                                </td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
         );

@@ -7,8 +7,13 @@ class Order extends Component {
     render() {
         return (
             <div className="Order">
-                <OrderForm type={this.props.type} />
-                <OrderTable type={this.props.type} />
+                <OrderForm
+                    type={this.props.type}
+                    submitHandler={this.props.submitHandler}
+                    stockChangeHandler={this.props.stockChangeHandler} />
+                <OrderTable
+                    type={this.props.type}
+                    orders={this.props.orders} />
             </div>
         );
     }

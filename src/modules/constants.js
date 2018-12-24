@@ -8,3 +8,5 @@ export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const ORDER_BUY_SUCCESS = 'ORDER_BUY_SUCCESS';
 
 export const ORDER_SELL_SUCCESS = 'ORDER_SELL_SUCCESS';
+
+export const CLEAR = 'CLEAR';

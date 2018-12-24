@@ -14,28 +14,32 @@ class ChiCangTable extends Component {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            中国石油
-                            <br />
-                            1476.0
-                        </td>
-                        <td>
-                            7.37
-                            <br />
-                            <span className="chengben">7.41</span>
-                        </td>
-                        <td>
-                            200
-                            <br />
-                            0
-                        </td>
-                        <td>
-                            -9.0
-                            <br />
-                            -0.61%
-                        </td>
-                    </tr>
+                    {this.props.chiCangStockDatas.map(chiCangStockData => {
+                        return (
+                            <tr key={chiCangStockData.stock_id}>
+                                <td>
+                                    {chiCangStockData.stock_name}
+                                    <br />
+                                    --
+                                </td>
+                                <td>
+                                    --
+                                    <br />
+                                    <span className="chengben">{chiCangStockData.price}</span>
+                                </td>
+                                <td>
+                                    {chiCangStockData.amount}
+                                    <br />
+                                    --
+                                </td>
+                                <td>
+                                    --
+                                    <br />
+                                    --
+                                </td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
         );

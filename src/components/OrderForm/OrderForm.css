@@ -27,10 +27,18 @@
     color: #fff;
     background-color: red;
 }
-
+.OrderForm .market {
+    display: inline-block;
+    padding: 0.5em 1.5em;
+    border: 1px solid red;
+    text-align: center;
+}
 .OrderForm-fall .entrust-type li {
     border-color: green;
 }
 .OrderForm-fall .entrust-type .selected {
     background-color: green;
+}
+.OrderForm-fall .market {
+    border-color: green;
 }

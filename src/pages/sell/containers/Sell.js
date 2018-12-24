@@ -6,6 +6,7 @@ import Sell from '../components/Sell';
 
 function mapStateToProps(state){
     return {
+        orders: state.global.orders
     };
 }
 

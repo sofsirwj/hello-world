@@ -3,7 +3,7 @@ import { Route, Link } from "react-router-dom";
 import { ConnectedRouter } from 'connected-react-router';
 import Home from './pages/home/containers/Home';
 import Buy from './pages/buy/containers/Buy';
-import Sell from './pages/sell/components/Sell';
+import Sell from './pages/sell/containers/Sell';
 import Login from './pages/login/containers/Login';
 import requireAuth from './components/requireAuth';
 import logo from './logo.svg';

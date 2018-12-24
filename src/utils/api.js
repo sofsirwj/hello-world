@@ -16,7 +16,11 @@ const request = (config) => {
         url: baseUrl + url
     };
     if(data){
-        payload.data = data;
+        if(method.toUpperCase() === 'GET'){
+            payload.params = data;
+        }else{
+            payload.data = data;
+        }
     }
     return new Promise((resolve, reject) => {
         axios(payload)

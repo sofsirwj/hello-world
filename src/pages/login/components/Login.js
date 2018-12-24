@@ -29,7 +29,7 @@ class Login extends Component {
         e.preventDefault();
         this.props.login(this.state.accountId)
         .then(() => {
-            this.props.history.replace('/');
+            this.props.replace('/');
         });
     }
 }

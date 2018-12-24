@@ -1,7 +1,13 @@
-import {getStocks as _getStocks} from '../../services/stock';
+import {getStocks as _getStocks, getStock as _getStock} from '../../services/stock';
 import {getAccount as _getAccount} from '../../services/account';
 import {getOrders as _getOrders} from '../../services/order';
-import {GET_STOCKS_SUCCESS, GET_ACCOUNT_SUCCESS, GET_ORDERS_SUCCESS} from '../constants';
+import {
+    GET_STOCKS_SUCCESS,
+    GET_ACCOUNT_SUCCESS,
+    GET_STOCK_SUCCESS,
+    GET_ORDERS_SUCCESS,
+    CLEAR
+} from '../constants';
 
 export const getStocks = () => {
     return dispatch => {
@@ -18,16 +24,31 @@ export const getStocks = () => {
     };
 };
 
-export const getBuyOrders = (accountId, status) => {
-    return getOrders(accountId, 'buy');
+export const getStock = (stockId) => {
+    return dispatch => {
+        _getStock(stockId)
+        .then(data => {
+            dispatch({
+                type: GET_STOCK_SUCCESS,
+                stock: data
+            });
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    };
 };
 
-export const getSellOrders = (accountId, status) => {
-    return getOrders(accountId, 'sell');
+export const getBuyOrders = (accountId, stockId, status) => {
+    return getOrders(accountId, stockId, 'buy', status);
 };
 
-export const getAllOrders = (accountId) => {
-    return getOrders(accountId);
+export const getSellOrders = (accountId, stockId, status) => {
+    return getOrders(accountId, stockId, 'sell', status);
+};
+
+export const getAllOrders = (accountId, stockId, status) => {
+    return getOrders(accountId, stockId, null, status);
 };
 
 export const getAccount = (accountId) => {
@@ -37,7 +58,7 @@ export const getAccount = (accountId) => {
         .then(data => {
             dispatch({
                 type: GET_ACCOUNT_SUCCESS,
-                accountId: accountId
+                account: data
             });
         })
         .catch(error => {
@@ -46,10 +67,17 @@ export const getAccount = (accountId) => {
     };
 };
 
-function getOrders(accountId, status){
+export const clear = () => {
+    return {
+        type: CLEAR
+    };
+};
+
+
+function getOrders(accountId, stockId, orderType, status){
     return (dispatch, getState) => {
         accountId = accountId || getState().login.accountId;
-        _getOrders(accountId, status)
+        _getOrders(accountId, stockId, orderType, status)
         .then(data => {
             dispatch({
                 type: GET_ORDERS_SUCCESS,

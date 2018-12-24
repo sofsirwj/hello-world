@@ -1,11 +1,28 @@
 import api from '../utils/api';
 
-export const getOrders = (accountId, status) => {
+export const getOrders = (accountId, stockId, orderType, status) => {
     if(!accountId){
         return Promise.reject('accountId is required');
     }
-    return api.get('/orders', {
-        accountId,
+    let queryData = {
+        account_id: accountId,
+        stock_id: stockId,
+        order_type: orderType,
         status
-    });
+    };
+    return api.get('/orders', queryData);
 };
+
+export const createBuyOrder = (queryData) => {
+    queryData.order_type = 'buy';
+    return createOrder(queryData);
+};
+
+export const createSellOrder = (queryData) => {
+    queryData.order_type = 'sell';
+    return createOrder(queryData);
+};
+
+function createOrder(queryData){
+    return api.post('/orders', queryData);
+}
