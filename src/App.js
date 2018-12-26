@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Link } from "react-router-dom";
 import { ConnectedRouter } from 'connected-react-router';
 import requireAuth from './components/requireAuth';
+import withErrorBoundary from './components/withErrorBoundary';
 import logo from './logo.svg';
 import './App.css';
 
@@ -31,7 +32,7 @@ class App extends Component {
           <React.Suspense fallback={<div>Loading...</div>}>
             <div className="content">
               <Route path="/" exact component={requireAuth(Home)} />
-              <Route path="/buy" component={requireAuth(Buy)} />
+              <Route path="/buy" component={withErrorBoundary(requireAuth(Buy))} />
               <Route path="/sell" component={requireAuth(Sell)} />
               <Route path="/login" render={props => <Login {...props} />} />
             </div>
