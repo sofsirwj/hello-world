@@ -24,5 +24,12 @@ export const createSellOrder = (queryData) => {
 };
 
 function createOrder(queryData){
+    // fake done
+    if(queryData.entrust_limit){
+        queryData.deal_price = queryData.entrust_limit + Math.floor(Math.random()*10)/100 * queryData.entrust_limit * (queryData.order_type === 'buy' ? -1 : 1);
+    }else{
+        queryData.deal_price = queryData.entrust_limit + Math.floor(Math.random()*10)/100 * queryData.entrust_limit * (Math.random() > 0.5 ? -1 : 1);
+    }
+    queryData.status = 'done';
     return api.post('/orders', queryData);
 }

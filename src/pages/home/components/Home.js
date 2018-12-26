@@ -47,13 +47,15 @@ class Home extends Component {
             let stockSellDoneTotalAmount = stockSellDoneAmounts.length && stockSellDoneAmounts.reduce((accumulator, currentValue) => accumulator + currentValue);
 
 
-            chiCangStockDatas.push({
-                stock_id: stockId,
-                stock_name: stockOrders[0].stock_name,
-                amount: stockBuyDoneTotalAmount - stockSellDoneTotalAmount,
-                price: stockBuyDoneTotalPrice/stockBuyDoneTotalAmount
-                // today_buy_amount: stockTodayBuyDoneTotalAmount (limited by T+1 rule)
-            });
+            if(stockDoneOrders.length){
+                chiCangStockDatas.push({
+                    stock_id: stockId,
+                    stock_name: stockOrders[0].stock_name,
+                    amount: stockBuyDoneTotalAmount - stockSellDoneTotalAmount,
+                    price: stockBuyDoneTotalPrice/stockBuyDoneTotalAmount
+                    // today_buy_amount: stockTodayBuyDoneTotalAmount (limited by T+1 rule)
+                });
+            }
         }
         return chiCangStockDatas;
     }

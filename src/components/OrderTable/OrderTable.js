@@ -16,7 +16,7 @@ class OrderTable extends Component {
                 <tbody>
                     {this.props.orders.map(order => {
                         return (
-                            <tr key={order.id}>
+                            <tr key={order.order_id}>
                                 <td>
                                     <span className="type">{this.props.type === 'sell' ? '卖' : '买'}</span>
                                     <p>

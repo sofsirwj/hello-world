@@ -10,8 +10,8 @@ class OrderForm extends Component {
         super(props);
         this.state = {
             entrust_type: 'limit',
-            entrust_limit: 5.56,
-            entrust_price: '' // for showing placeholder when it's zero
+            entrust_limit: '', // for showing placeholder when it's zero
+            entrust_amount: ''
         };
     }
 
@@ -69,7 +69,8 @@ class OrderForm extends Component {
             account_id: this.props.accountId,
             stock_id: this.state.stock_id,
             entrust_type: this.state.entrust_type,
-            entrust_amount: this.state.entrust_amount
+            entrust_amount: this.state.entrust_amount,
+            deal_price: this.props.stock.settlement
         };
         if(this.state.entrust_type === 'limit'){
             queryData.entrust_limit = this.state.entrust_limit;
