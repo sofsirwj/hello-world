@@ -1,1 +1,1 @@
-Sofsir is 1tough.
+Sofsir is tough.
