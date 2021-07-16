@@ -1,1 +1,1 @@
-Sofsir is wowtough.
+Sofsir is tough.
